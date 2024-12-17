@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prelepa Poruka Za Tebe</title>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Pozadina sa dinamičnim gradijentima */
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            background: linear-gradient(45deg, #ff4b5c, #ff7b00, #ffcc00, #4bff65, #00c0ff);
+            animation: gradientShift 10s ease infinite;
+        }
+
+        /* Animacija za gradijentnu pozadinu */
+        @keyframes gradientShift {
+            0% {
+                background: linear-gradient(45deg, #ff4b5c, #ff7b00, #ffcc00, #4bff65, #00c0ff);
+            }
+            25% {
+                background: linear-gradient(45deg, #ffcc00, #4bff65, #00c0ff, #ff4b5c, #ff7b00);
+            }
+            50% {
+                background: linear-gradient(45deg, #00c0ff, #ff4b5c, #ff7b00, #ffcc00, #4bff65);
+            }
+            75% {
+                background: linear-gradient(45deg, #4bff65, #00c0ff, #ff4b5c, #ff7b00, #ffcc00);
+            }
+            100% {
+                background: linear-gradient(45deg, #ff4b5c, #ff7b00, #ffcc00, #4bff65, #00c0ff);
+            }
+        }
+
+        /* Glavni okvir sa sadržajem */
+        .content {
+            text-align: center;
+            padding: 40px;
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 20px;
+            box-shadow: 0 4px 50px rgba(0, 0, 0, 0.4);
+            color: white;
+            width: 80%;
+            max-width: 700px;
+            animation: fadeInContent 3s ease-out;
+        }
+
+        /* Animacija za pojavljujući sadržaj */
+        @keyframes fadeInContent {
+            0% {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Animacija za poruku (tekst) */
+        .message {
+            font-family: 'Pacifico', cursive;
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            animation: textAnimation 2.5s ease-out;
+        }
+
+        /* Animacija za tekst (pojavljuje se u boji, širi se i svetli) */
+        @keyframes textAnimation {
+            0% {
+                opacity: 0;
+                transform: scale(0.5);
+                text-shadow: 0 0 10px #ff7b00, 0 0 20px #ff7b00;
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.1);
+                color: #00c0ff;
+                text-shadow: 0 0 20px #00c0ff, 0 0 30px #00c0ff;
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+                color: #ff7b00;
+                text-shadow: 0 0 15px #ff7b00, 0 0 25px #ff7b00;
+            }
+        }
+
+        /* Stil za dugme */
+        button {
+            background-color: #ff4b5c;
+            color: white;
+            font-size: 1.3em;
+            padding: 15px 35px;
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        button:hover {
+            transform: scale(1.1);
+            background-color: #ff7b00;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Responzivnost - manji ekran */
+        @media (max-width: 600px) {
+            .message {
+                font-size: 2.5em;
+            }
+
+            button {
+                font-size: 1.1em;
+                padding: 10px 25px;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="content">
+        <!-- Poruka koja se generiše -->
+        <div id="message" class="message">
+            Za moju Sof <3
+            Da lakse prezivis ispite!:)
+        </div>
+
+        <!-- Dugme za generisanje nove poruke -->
+        <button onclick="generateMessage()">Nova poruka za danas <3</button>
+    </div>
+
+    <script>
+        // Lista nasumičnih poruka
+        const messages = [
+            "Mozda te nisam videla danas, ali ne sumnjam da si najlepsa",
+            "Volim te sunce moje <3",
+            "Imas najlepsu dusu na svetu, ne zaboravi to",
+            "Nemoj nikada da prestanes da se smejes :)",
+            "Mozes da ostvaris sve sto pozelis, a ja cu ti uvek biti puna podrska",
+            "Nisi svesna svoje lepote",
+            "Neka ti ova poruka bude znak da ne odustajes, sta god da radis sad :)",
+            "Jedva cekam da te vidim <3",
+            "Bojis moj svet svojim prisustvom",
+            "Ti si moja motivacija za sve",
+            "Ne sumnjam ni trunku da ces sve ispite da polozis, ti si moja pametnica",
+            "Dusu si mi uzela plavuso",
+            "Mislim na tebe svaki dan, mozes ti to!",
+            "Neka ti ova poruka bude znak da ce sve biti u redu, prati svoje srce",
+            "Jako, ali jako sam ponosna na tebe Sof <3",
+            "Zajedno ćemo proći kroz sve, uvek sam tu za tebe.",
+            "Veruj u sebe, jer ja verujem u tebe.",
+            "S tobom je svaki izazov lakši. Proći ćemo kroz ovo zajedno.",
+            "Nema ničeg što ne možeš postići, jer tvoje sposobnosti su neograničene.",
+            "Ispiti su samo još jedan korak ka tvom uspehu, a ja sam tu da te podržim.",
+            "Tvoj trud će se uvek isplatiti, samo nastavi da ideš napred.",
+            "Uvek ću biti tu da te podstaknem kad god ti bude potrebno.",
+            "Tvoje sposobnosti su mnogo veće nego što možda misliš.",
+            "Verujem u tvoje sposobnosti, tvoj uspeh je samo pitanje vremena.",
+            "Svaki izazov je samo prilika da postigneš više.",
+            "Tvoj uspeh je moj uspeh, jer sam uvek tu uz tebe.",
+            "Neka tvoj trud bude tvoje najveće oružje. Zajedno ćemo doći do cilja.",
+            "Zajedno možemo prevazići sve prepreke.",
+            "Tvoj rad i posvećenost neće proći nezapaženo.",
+            "Započni svaki dan sa verom u sebe, jer si sposobna za velike stvari.",
+            "S tobom sve postaje jednostavnije, jer zajedno činimo pravi tim.",
+            "Svaki korak koji napraviš, vodi te bliže tvom cilju. Tu sam da te podržim.",
+            "Tvoje ideje i trud vode te ka velikim stvarima. Nikada nemoj sumnjati u to.",
+            "Bez obzira na sve, uvek sam uz tebe i verujem u tvoj uspeh.",
+            "Svaka prepreka koju savladaš samo je dokaz tvoje snage.",
+            "Kada mi je los dan, setim se ko mi je devojka i automatski je popravljen :)",
+            "Jos jedan dan da te podsetim da imas najlepse oci na svetu"
+        ];
+
+        // Funkcija za generisanje nasumične poruke
+        function generateMessage() {
+            const randomIndex = Math.floor(Math.random() * messages.length);
+            const messageElement = document.getElementById("message");
+            messageElement.textContent = messages[randomIndex]; // Postavljamo novu poruku
+        }
+    </script>
+
+</body>
+</html>
